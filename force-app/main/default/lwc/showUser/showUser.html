@@ -1,0 +1,186 @@
+<template>
+    <lightning-card >
+
+        <!-- ================createButton start=========================================== -->
+        <lightning-button icon-name="utility:record_create" variant="brand" label="AddNewUser" onclick={createNewUserHandler}>
+        </lightning-button> &nbsp;
+    
+            <template if:true={showMessageFlag}>
+                <lightning-input type="text" data-formfield="FirstName" label="First Name" 
+                name="UserFirst Name" required="true" ></lightning-input> <BR />
+
+                
+
+                <lightning-input type="text" data-formfield="LastName" label="last Name" 
+                name="UserFirst Name" required="true" ></lightning-input> <BR />
+
+                <lightning-input type="email" data-formfield="Email" label="Email Address" 
+                name="UserFirst Name" required="true" ></lightning-input> <BR />
+
+                <lightning-input type="text" data-formfield="Password" label="Password" 
+                name="UserFirst Name" required="true" ></lightning-input> <BR />
+
+                <lightning-input type="text" data-formfield="ConfirmPassword" label="Confirm Password"
+                name="UserFirst Name" required="true" ></lightning-input> <BR />
+
+                <lightning-input type="date" data-formfield="D.O.B" label="D.O.B"
+                name="UserFirst Name" required="true" ></lightning-input> <BR />
+
+                <lightning-input type="text" data-formfield="Address" label="Address" 
+                name="UserFirst Name" required="true" ></lightning-input> <BR />
+                <lightning-combobox
+                    name="Country"
+                    label="Country"
+                    value={Countryvalue}
+                    options={Countryoptions}
+                    onchange={handleChangeCountry} 
+                    required="true" 
+                    data-formfield="Country"></lightning-combobox>
+                
+                    <lightning-combobox
+                    name="State"
+                    label="State"
+                    value={Statevalue}
+                    options={Stateoptions}
+                    onchange={handleChangeState} 
+                    required="true" 
+                    data-formfield="State"></lightning-combobox>
+
+                    <lightning-combobox
+                    name="City"
+                    label="City"
+                    value={Cityvalue}
+                    options={Cityoptions}
+                    onchange={handleChangeCity} 
+                    required="true" 
+                    data-formfield="City"></lightning-combobox>
+
+                <lightning-input type="tel" data-formfield="Phone No" label="Phone No" 
+                name="UserFirst Name" required="true" ></lightning-input> <BR />
+
+                <lightning-combobox
+                    name="Secrete Question"
+                    label="Secrete Question"
+                    value={SecreteQuestionvalue}
+                    options={SecreteQuestionoptions}
+                    onchange={handleChangeSecreteQuestion} 
+                    required="true" 
+                    data-formfield="Secrete Question"></lightning-combobox>
+
+                <lightning-input type="text" data-formfield="Secret Answer" label="Secret Answer" 
+                name="UserFirst Name" required="true" ></lightning-input> <BR />
+
+                
+
+                <lightning-button icon-name="utility:record_create" variant="brand" label="save" onclick={saveNewUserHandler}>
+                </lightning-button> &nbsp;
+    
+    
+       
+            </template><br/><br/>
+            <!-- ================================create Button end ======================================== -->
+
+        <!-- Selected Records = {selectedRecordsCount} <br /> -->
+<!--Previous code start--> 
+
+        <!-- <lightning-datatable
+            key-field="Id"
+            data={Users.data}
+            
+            columns={columnsjs}    
+            draft-values={draftValues} 
+            onrowselection={selectedRecordsHandler}                     
+            onsave={saveHandler}
+            onchange={handleAccountTypeChange}
+               > 
+            </lightning-datatable>
+
+
+
+        <lightning-button variant="destructive" icon-name="utility:delete" label="Delete Selected Records" 
+        onclick={deleteSelectedRecordsHandler}></lightning-button> -->
+
+
+       <!--Previous code End--> 
+<!-- 2nd Code Start sagar -=======================================>
+        <lightning-layout>
+            <div class="flex-container">
+                <template for:each={lstUser__c} for:item="user">
+                    <lightning-layout-item size="4" padding="around-small" key={user.Id}>
+                        <lightning-card  title={user.Name}>
+                            <p class="slds-p-horizontal_small">First Name: {user.First_Name__c}</p>
+                            <p class="slds-p-horizontal_small">City: {user.City__c}</p>
+                            <p class="slds-p-horizontal_small">State: {user.State__c}</p>
+                            <p class="slds-p-horizontal_small">Phone Number: {user.Phone__c}</p>
+                            <p class="slds-p-horizontal_small">Email Address : 
+                                <lightning-formatted-number value={user.Email_Address__c} format-style="email">
+                                </lightning-formatted-number>
+                            </p>
+                            
+                            <p slot="footer">
+                                <lightning-button label="Delete" variant="destructive" slot="actions"
+                                    value={user.Id} onclick={deleteUser}></lightning-button>
+                            </p>
+                        </lightning-card>
+                    </lightning-layout-item>
+                </template>
+            </div>
+        </lightning-layout> -->
+      <!-- ======================2nd sagar code is end================================================= -->
+
+      <table aria-describedby="conatact-list" class="slds-table  slds-table_bordered ">
+
+        <!--Header of the table-->
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="slds-size_1-of-6 " scope="col">
+                    <div class="slds-truncate " title="User First Name">First Name</div>
+                </th>
+                <th class="slds-size_1-of-6 " scope="col">
+                    <div class="slds-truncate " title="User City">City</div>
+                </th>
+                <th class="slds-size_1-of-6 " scope="col">
+                    <div class="slds-truncate " title="User State">State</div>
+                </th>
+                <th class="slds-size_1-of-6 " scope="col">
+                    <div class="slds-truncate " title="User Phone Number">Phone Number</div>
+                </th>
+                <th class="slds-size_1-of-6 " scope="col">
+                    <div class="slds-truncate " title="User Email Address">Email Address</div>
+                </th>
+           </tr>
+        </thead>
+
+        <!--Body of the table-->
+        <tbody>
+           
+               <template for:each={lstUser__c} for:item="user">
+                    <tr key={user.id}>
+                          <td>{user.First_Name__c}</td>
+                          <td>{user.City__c}</td>
+                          <td>{user.State__c}</td>
+                          <td>{user.Phone__c}</td>
+                          <td>{user.Email_Address__c}</td> 
+                          <td><lightning-button label="Delete" variant="destructive" slot="actions"
+                            value={user.Id} onclick={deleteUser}></lightning-button></td>
+                    </tr>
+
+               </template>
+                
+            
+        </tbody>
+         
+    </table>
+
+
+
+    <!-- //create an aaacount code start -->
+    
+   
+   
+
+
+       
+    </lightning-card>
+
+</template>
