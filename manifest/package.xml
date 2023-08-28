@@ -7,7 +7,10 @@
     <types>
         <members>Adds__c</members>
         <name>CustomObject</name>
-    </types>
-
-     <version>58.0</version>
+     </types>
+    <types>
+        <members>Client__c</members>
+        <name>CustomObject</name>
+     </types>
+  <version>58.0</version>
 </Package>
